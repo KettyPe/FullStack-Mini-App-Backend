@@ -1,5 +1,21 @@
 import PostModel from "../models/Post.js";
 
+export const getLastTags = async (req, res) => {
+     try {
+          const posts = await PostModel.find().limit(5).exec()
+
+          const tags = posts.map((obj) => obj.tags).flat().slice(0, 5)
+
+          return res.json(tags)
+     } catch (err) {
+          console.log(err);
+
+          res.status(500).json({
+               message: 'Ошибка получения тегов'
+          })
+     }
+}
+
 export const getAll = async (req, res) => {
      try {
           const posts = await PostModel.find().populate('user').exec()
