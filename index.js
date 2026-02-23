@@ -34,7 +34,7 @@ app.use('/uploads', express.static('uploads'))
 
 app.post('/auth/register', registerValidation, handleValidationErrors, UserControllers.register)
 app.post('/auth/login', loginValidation, handleValidationErrors, UserControllers.login)
-app.get('/auth/getmeinfo', checkAuth, UserControllers.getMe)
+app.get('/auth/me', checkAuth, UserControllers.getMe)
 
 app.post('/upload', checkAuth, upload.single('image'), (req, res) => {
      res.json({
