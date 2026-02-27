@@ -66,7 +66,7 @@ export const getOne = async (req, res) => {
                {
                     returnDocument: 'after',
                },
-          )
+          ).populate('user')
 
           if (!doc) {
                return res.status(404).json({
